@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
   { label: 'Team', href: '#team' },
-  { label: 'Academy', href: '#academy' },
+  { label: 'Academy', href: '/academy' },
   { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -75,7 +75,7 @@ export default function NavBar() {
             boxShadow: '0 0 18px rgba(249,109,100,0.3)',
           }}
         >
-          Let's Talk
+          Let&apos;s Talk
         </a>
 
         {/* Mobile hamburger */}
@@ -118,7 +118,7 @@ export default function NavBar() {
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-[#f96d64] text-white uppercase tracking-wide"
                 onClick={() => setOpen(false)}
               >
-                Let's Talk
+                Let&apos;s Talk
               </a>
             </li>
           </ul>

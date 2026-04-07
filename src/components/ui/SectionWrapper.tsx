@@ -1,7 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import type { ComponentBaseProps } from '@/types'
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 interface SectionWrapperProps extends ComponentBaseProps {
   id?: string
@@ -11,17 +14,17 @@ interface SectionWrapperProps extends ComponentBaseProps {
   eyebrow?: string
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
 }
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, ease: EASE },
   },
 }
 

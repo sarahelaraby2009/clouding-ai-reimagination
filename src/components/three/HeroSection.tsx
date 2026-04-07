@@ -3,7 +3,10 @@
 import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import type { Points, Mesh } from 'three'
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 // ── Particle sphere using Fibonacci lattice distribution ──────────────────
 
@@ -113,13 +116,13 @@ function Scene() {
 
 // ── Stagger variants ──────────────────────────────────────────────────────
 
-const container = {
+const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 }
 
 // ── Component ─────────────────────────────────────────────────────────────
@@ -249,7 +252,7 @@ export default function HeroSection() {
                     '0 0 24px rgba(249,109,100,0.35)')
                 }
               >
-                Let's Talk
+                Let&apos;s Talk
               </a>
               <a
                 href="#services"

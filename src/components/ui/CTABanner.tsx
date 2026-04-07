@@ -36,7 +36,7 @@ export default function CTABanner() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight"
         >
-          Let's Talk
+          Let&apos;s Talk
         </motion.h2>
 
         <motion.p
