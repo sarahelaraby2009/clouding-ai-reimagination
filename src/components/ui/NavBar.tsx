@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Team', href: '#team' },
-  { label: 'Academy', href: '/academy' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services', href: '/#services' },
+  { label: 'About',    href: '/#about'    },
+  { label: 'Team',     href: '/#team'     },
+  { label: 'Academy',  href: '/academy'   },
+  { label: 'Blog',     href: '/#blog'     },
+  { label: 'Contact',  href: '/#contact'  },
 ]
 
 export default function NavBar() {
@@ -68,7 +68,7 @@ export default function NavBar() {
 
         {/* Desktop CTA */}
         <a
-          href="#contact"
+          href="/#contact"
           className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold text-white uppercase tracking-wide transition-all duration-200"
           style={{
             background: 'linear-gradient(135deg, #f96d64, #e85a51)',
@@ -114,7 +114,7 @@ export default function NavBar() {
             ))}
             <li>
               <a
-                href="#contact"
+                href="/#contact"
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-[#f96d64] text-white uppercase tracking-wide"
                 onClick={() => setOpen(false)}
               >
