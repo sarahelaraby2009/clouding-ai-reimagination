@@ -44,6 +44,15 @@ html {
   }
 }
 
+/* ── Loading animations ────────────────────────────────────────────────── */
+@keyframes spin-ring {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-fade {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 1;    }
+}
+
 /* ── Base ──────────────────────────────────────────────────────────────── */
 body {
   color: var(--foreground);

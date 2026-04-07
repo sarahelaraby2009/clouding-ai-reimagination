@@ -5,11 +5,12 @@ import SectionWrapper from '@/components/ui/SectionWrapper'
 import TeamCard from '@/components/ui/TeamCard'
 import CTABanner from '@/components/ui/CTABanner'
 import Footer from '@/components/ui/Footer'
+import LoadingScreen from '@/components/ui/LoadingScreen'
 
 // Three.js must be client-only (no SSR)
 const HeroSection = dynamic(
   () => import('@/components/three/HeroSection'),
-  { ssr: false }
+  { ssr: false, loading: () => <LoadingScreen minimal /> }
 )
 
 // ── Data ────────────────────────────────────────────────────────────────────
