@@ -1,101 +1,166 @@
-import Image from "next/image";
+import dynamic from 'next/dynamic'
+import NavBar from '@/components/ui/NavBar'
+import ServiceCard from '@/components/ui/ServiceCard'
+import SectionWrapper from '@/components/ui/SectionWrapper'
+import TeamCard from '@/components/ui/TeamCard'
+import CTABanner from '@/components/ui/CTABanner'
+
+// Three.js must be client-only (no SSR)
+const HeroSection = dynamic(
+  () => import('@/components/three/HeroSection'),
+  { ssr: false }
+)
+
+// ── Data ────────────────────────────────────────────────────────────────────
+
+const SERVICES = [
+  {
+    icon: '🤖',
+    title: 'Agentforce',
+    description:
+      'AI-native accelerators built for the Salesforce ecosystem — mobile-ready flows, Arabic LLM support, visual rich experiences, and conversational search.',
+    tags: ['AI Agents', 'Arabic LLM', 'Mobile-first'],
+  },
+  {
+    icon: '☁️',
+    title: 'Salesforce Clouds',
+    description:
+      'Specialising in Comms Cloud, Media Cloud, and Revenue Cloud. Deliver 360° visibility and connected customer journeys across every touchpoint.',
+    tags: ['Comms Cloud', 'Media Cloud', 'Revenue Cloud'],
+  },
+  {
+    icon: '🔗',
+    title: 'MuleSoft Integration',
+    description:
+      'Connect systems, activate data, and automate intelligently. API-led connectivity with real-time sync across your entire enterprise landscape.',
+    tags: ['API Mesh', 'Real-time Sync', 'Automation'],
+  },
+  {
+    icon: '📊',
+    title: 'Tableau',
+    description:
+      'Turn data into decisions. Interactive dashboards and AI-powered insights that give every stakeholder clarity on what matters most.',
+    tags: ['Dashboards', 'AI Insights', 'Data Viz'],
+  },
+]
+
+const TEAM = [
+  {
+    name: 'Mohamed Shatla',
+    title: 'Chief Executive Officer',
+    tenure: '20+ years of experience',
+    description:
+      'Two decades growing European enterprise presence, with deep expertise in digital transformation strategy and Salesforce ecosystem leadership.',
+  },
+  {
+    name: 'Tarek Negm',
+    title: 'Chief Technology Officer',
+    tenure: '22 years · $200M+ transformations',
+    description:
+      'Global enterprise architect who has led $200M+ digital transformation programmes across telecoms, finance, and media verticals.',
+  },
+  {
+    name: 'Waleed Ghalwash',
+    title: 'Chief Product Officer',
+    tenure: 'Serial entrepreneur',
+    description:
+      'Product visionary and serial founder specialising in AI-powered products, go-to-market strategy, and scaling tech startups in the MENA region.',
+  },
+]
+
+// ── Page ────────────────────────────────────────────────────────────────────
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      {/* Skip to main content — accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#f96d64] focus:text-white focus:rounded-lg focus:text-sm"
+      >
+        Skip to main content
+      </a>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <NavBar />
+
+      <main id="main-content">
+        {/* ── Hero ── */}
+        <HeroSection />
+
+        {/* ── Services ── */}
+        <SectionWrapper
+          id="services"
+          title="What We Do"
+          subtitle="Four integrated practices that cover the full Salesforce ecosystem — from AI agents to data intelligence."
+          dark={false}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+            {SERVICES.map((s) => (
+              <ServiceCard key={s.title} {...s} />
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* ── About ── */}
+        <SectionWrapper
+          id="about"
+          dark
+          title="Why Clouding AI"
+          subtitle="We are transformation partners — not implementers. Our work sits at the intersection of Salesforce expertise, AI capability, and genuine empathy for the humans we serve."
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            {[
+              { stat: '20+', label: 'Years combined Salesforce expertise' },
+              { stat: '$200M+', label: 'Digital transformations delivered' },
+              { stat: '3', label: 'MENA offices — Dubai, Riyadh, Cairo' },
+            ].map(({ stat, label }) => (
+              <div key={stat} className="p-8 rounded-2xl border border-white/10 bg-[#071628]">
+                <p className="text-5xl font-bold text-[#045089] mb-3">{stat}</p>
+                <p className="text-sm text-white/55 leading-relaxed">{label}</p>
+              </div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* ── Team ── */}
+        <SectionWrapper
+          id="team"
+          dark={false}
+          title="Leadership"
+          subtitle="Three founding partners with decades of enterprise experience and a shared belief in human-centered technology."
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {TEAM.map((member) => (
+              <TeamCard key={member.name} {...member} />
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* ── CTA ── */}
+        <CTABanner />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* ── Footer ── */}
+      <footer
+        className="py-8 px-6 border-t border-white/10 text-center"
+        style={{ background: '#020e20' }}
+      >
+        <p className="text-xs text-white/25">
+          © 2025 Clouding AI · Dubai South Business Park, UAE ·{' '}
+          <a
+            href="https://www.linkedin.com/company/clouding-ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white/50 transition-colors"
+          >
+            LinkedIn
+          </a>{' '}
+          ·{' '}
+          <a href="#" className="hover:text-white/50 transition-colors">
+            Privacy Policy
+          </a>
+        </p>
       </footer>
-    </div>
-  );
+    </>
+  )
 }

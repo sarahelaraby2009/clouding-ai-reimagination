@@ -2,26 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Brand palette (Clouding AI blue) ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-50:  #e6eef5;
+  --brand-100: #c0d4e8;
+  --brand-200: #9abbda;
+  --brand-300: #73a1cd;
+  --brand-400: #4d88bf;
+  --brand-500: #266eb2;
+  --brand-600: #045089;
+  --brand-700: #044070;
+  --brand-800: #033058;
+  --brand-900: #020e20;
+
+  /* Semantic tokens — light mode */
+  --background:        #ffffff;
+  --foreground:        #0f0f12;
+  --surface:           #f0f4f8;
+  --surface-elevated:  #ffffff;
+  --muted:             #6b7280;
+  --accent:            #f96d64;
+  --highlight:         #00ffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background:        #020e20;
+    --foreground:        #fafafa;
+    --surface:           #071628;
+    --surface-elevated:  #0d2040;
+    --muted:             #8a9bb0;
+    --accent:            #f96d64;
+    --highlight:         #00ffff;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  /* Utility to safely contain a Three.js canvas */
+  .canvas-container {
+    @apply w-full h-full overflow-hidden;
+    touch-action: none;
   }
 }
