@@ -90,6 +90,7 @@ export default function Home() {
         {/* ── Services ── */}
         <SectionWrapper
           id="services"
+          eyebrow="Our Practice Areas"
           title="What We Do"
           subtitle="Four integrated practices that cover the full Salesforce ecosystem — from AI agents to data intelligence."
           dark={false}
@@ -105,6 +106,7 @@ export default function Home() {
         <SectionWrapper
           id="about"
           dark
+          eyebrow="Why Us"
           title="Why Clouding AI"
           subtitle="We are transformation partners — not implementers. Our work sits at the intersection of Salesforce expertise, AI capability, and genuine empathy for the humans we serve."
         >
@@ -114,9 +116,22 @@ export default function Home() {
               { stat: '$200M+', label: 'Digital transformations delivered' },
               { stat: '3', label: 'MENA offices — Dubai, Riyadh, Cairo' },
             ].map(({ stat, label }) => (
-              <div key={stat} className="p-8 rounded-2xl border border-white/10 bg-[#071628]">
-                <p className="text-5xl font-bold text-[#045089] mb-3">{stat}</p>
-                <p className="text-sm text-white/55 leading-relaxed">{label}</p>
+              <div
+                key={stat}
+                className="p-8 rounded-2xl glass-card"
+              >
+                <p
+                  className="text-5xl font-bold mb-3"
+                  style={{
+                    background: 'linear-gradient(135deg, #00c8e0 0%, #045089 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  {stat}
+                </p>
+                <p className="text-sm text-white/50 leading-relaxed">{label}</p>
               </div>
             ))}
           </div>
@@ -126,6 +141,7 @@ export default function Home() {
         <SectionWrapper
           id="team"
           dark={false}
+          eyebrow="The Founders"
           title="Leadership"
           subtitle="Three founding partners with decades of enterprise experience and a shared belief in human-centered technology."
         >
@@ -142,24 +158,41 @@ export default function Home() {
 
       {/* ── Footer ── */}
       <footer
-        className="py-8 px-6 border-t border-white/10 text-center"
-        style={{ background: '#020e20' }}
+        className="py-10 px-6 border-t text-center"
+        style={{ background: '#020e20', borderColor: 'rgba(0,200,224,0.1)' }}
       >
-        <p className="text-xs text-white/25">
-          © 2025 Clouding AI · Dubai South Business Park, UAE ·{' '}
+        <p
+          className="text-xl font-bold mb-3"
+          style={{
+            background: 'linear-gradient(135deg, #00c8e0, #045089)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          clouding.ai
+        </p>
+        <p className="text-xs text-white/25 mb-4">
+          © 2025 Clouding AI · Dubai South Business Park, UAE
+        </p>
+        <div className="flex items-center justify-center gap-6 text-xs text-white/25">
           <a
             href="https://www.linkedin.com/company/clouding-ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white/50 transition-colors"
+            className="hover:text-[#00c8e0] transition-colors"
           >
             LinkedIn
-          </a>{' '}
-          ·{' '}
-          <a href="#" className="hover:text-white/50 transition-colors">
+          </a>
+          <span>·</span>
+          <a href="#" className="hover:text-[#00c8e0] transition-colors">
             Privacy Policy
           </a>
-        </p>
+          <span>·</span>
+          <a href="mailto:info@clouding.ai" className="hover:text-[#00c8e0] transition-colors">
+            info@clouding.ai
+          </a>
+        </div>
       </footer>
     </>
   )

@@ -39,7 +39,17 @@ export default function NavBar() {
           href="/"
           className="text-white font-bold text-xl tracking-tight shrink-0"
         >
-          clouding<span className="text-[#f96d64]">.ai</span>
+          clouding
+          <span
+            style={{
+              background: 'linear-gradient(135deg, #00c8e0, #045089)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            .ai
+          </span>
         </Link>
 
         {/* Desktop links */}
@@ -59,7 +69,11 @@ export default function NavBar() {
         {/* Desktop CTA */}
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold bg-[#f96d64] text-white hover:bg-[#e85a51] transition-colors uppercase tracking-wide"
+          className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold text-white uppercase tracking-wide transition-all duration-200"
+          style={{
+            background: 'linear-gradient(135deg, #f96d64, #e85a51)',
+            boxShadow: '0 0 18px rgba(249,109,100,0.3)',
+          }}
         >
           Let's Talk
         </a>
