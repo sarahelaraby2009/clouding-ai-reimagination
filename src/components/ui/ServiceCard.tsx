@@ -1,21 +1,24 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { ComponentBaseProps } from '@/types'
 
 interface ServiceCardProps extends ComponentBaseProps {
   title: string
   description: string
-  icon: string
+  iconUrl?: string
+  icon?: string   // emoji fallback (used by academy page)
   tags?: string[]
 }
 
 export default function ServiceCard({
   title,
   description,
-  icon,
+  iconUrl,
   tags,
   className,
+  icon,
 }: ServiceCardProps) {
   return (
     <motion.div
@@ -45,10 +48,22 @@ export default function ServiceCard({
         }}
       />
 
-      {/* Icon */}
-      <div className="text-4xl mb-5 select-none" aria-hidden>
-        {icon}
-      </div>
+      {/* Product logo / emoji icon */}
+      {iconUrl ? (
+        <div className="relative h-16 w-40 mb-5 shrink-0" aria-hidden>
+          <Image
+            src={iconUrl}
+            alt={title}
+            fill
+            sizes="160px"
+            className="object-contain object-left"
+          />
+        </div>
+      ) : icon ? (
+        <div className="text-4xl mb-5 select-none" aria-hidden>
+          {icon}
+        </div>
+      ) : null}
 
       {/* Title */}
       <h3 className="text-base font-semibold text-white mb-2 group-hover:text-[#00c8e0] transition-colors duration-300">

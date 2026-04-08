@@ -24,28 +24,28 @@ const HeroSection = dynamic(
 
 const SERVICES = [
   {
-    icon: '🤖',
+    iconUrl: 'https://clouding.ai/wp-content/uploads/2025/09/Agentforce-Character-1024x1024-1.png',
     title: 'Agentforce',
     description:
       'AI-native accelerators built for the Salesforce ecosystem — mobile-ready flows, Arabic LLM support, visual rich experiences, and conversational search.',
     tags: ['AI Agents', 'Arabic LLM', 'Mobile-first'],
   },
   {
-    icon: '☁️',
+    iconUrl: 'https://clouding.ai/wp-content/uploads/2024/09/Salesforce-Partner-Logo.webp',
     title: 'Salesforce Clouds',
     description:
       'Specialising in Comms Cloud, Media Cloud, and Revenue Cloud. Deliver 360° visibility and connected customer journeys across every touchpoint.',
     tags: ['Comms Cloud', 'Media Cloud', 'Revenue Cloud'],
   },
   {
-    icon: '🔗',
+    iconUrl: 'https://clouding.ai/wp-content/uploads/2025/09/product-features-mulesoft-logo.webp',
     title: 'MuleSoft Integration',
     description:
       'Connect systems, activate data, and automate intelligently. API-led connectivity with real-time sync across your entire enterprise landscape.',
     tags: ['API Mesh', 'Real-time Sync', 'Automation'],
   },
   {
-    icon: '📊',
+    iconUrl: 'https://clouding.ai/wp-content/uploads/2025/09/Tableau_logo.png',
     title: 'Tableau',
     description:
       'Turn data into decisions. Interactive dashboards and AI-powered insights that give every stakeholder clarity on what matters most.',
@@ -60,6 +60,8 @@ const TEAM = [
     tenure: '20+ years of experience',
     description:
       'Two decades growing European enterprise presence, with deep expertise in digital transformation strategy and Salesforce ecosystem leadership.',
+    photoUrl: 'https://unavatar.io/linkedin/mohamed-shatla',
+    linkedinUrl: 'https://www.linkedin.com/in/mohamed-shatla',
   },
   {
     name: 'Tarek Negm',
@@ -67,6 +69,8 @@ const TEAM = [
     tenure: '22 years · $200M+ transformations',
     description:
       'Global enterprise architect who has led $200M+ digital transformation programmes across telecoms, finance, and media verticals.',
+    photoUrl: 'https://unavatar.io/linkedin/tarek-negm',
+    linkedinUrl: 'https://www.linkedin.com/in/tarek-negm',
   },
   {
     name: 'Waleed Ghalwash',
@@ -74,6 +78,8 @@ const TEAM = [
     tenure: 'Serial entrepreneur',
     description:
       'Product visionary and serial founder specialising in AI-powered products, go-to-market strategy, and scaling tech startups in the MENA region.',
+    photoUrl: 'https://unavatar.io/linkedin/waleed-ghalwash',
+    linkedinUrl: 'https://www.linkedin.com/in/waleed-ghalwash',
   },
 ]
 
@@ -142,7 +148,7 @@ export default function Home() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
             {SERVICES.map((s) => (
-              <ServiceCard key={s.title} {...s} />
+              <ServiceCard key={s.title} title={s.title} description={s.description} iconUrl={s.iconUrl} tags={s.tags} />
             ))}
           </div>
         </SectionWrapper>

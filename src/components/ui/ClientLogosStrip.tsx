@@ -56,9 +56,10 @@ export default function ClientLogosStrip() {
             src="/logos.png"
             alt="Trusted by Etisalat (e&), McKinsey & Company, SRMG, Mannai Corporation, and Qatar Airways"
             draggable={false}
+            loading="lazy"
             style={{
               width: '100%',
-              maxWidth: '900px',
+              maxWidth: '1100px',
               height: 'auto',
             }}
           />
