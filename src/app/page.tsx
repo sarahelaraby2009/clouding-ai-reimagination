@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import NavBar from '@/components/ui/NavBar'
 import ServiceCard from '@/components/ui/ServiceCard'
 import SectionWrapper from '@/components/ui/SectionWrapper'
@@ -71,6 +72,36 @@ const TEAM = [
     tenure: 'Serial entrepreneur',
     description:
       'Product visionary and serial founder specialising in AI-powered products, go-to-market strategy, and scaling tech startups in the MENA region.',
+  },
+]
+
+const POSTS = [
+  {
+    category: 'AI & CX',
+    date: 'Sep 26, 2025',
+    title: 'Picture Superiority Effect: Why Visual-First AI Agents Convert Better',
+    excerpt:
+      'Research shows humans process images 60,000× faster than text. Discover how applying the Picture Superiority Effect in Agentforce builds AI agents that engage, persuade, and convert.',
+    image: 'https://clouding.ai/wp-content/uploads/2025/09/PicSup-768x231.png',
+    href: 'https://clouding.ai/picture-superiority-effect-why-visual-first-ai-agents-convert-better/',
+  },
+  {
+    category: 'Strategy',
+    date: 'Sep 9, 2025',
+    title: 'From Deterministic UX to Cognitive CX',
+    excerpt:
+      'The shift from rule-based interfaces to AI-driven cognitive experiences is redefining how enterprises think about customer engagement — and what it means to design for intent.',
+    image: 'https://clouding.ai/wp-content/uploads/2025/09/UX-to-Cognitive-CX-768x347.png',
+    href: 'https://clouding.ai/from-deterministic-ux-to-cognitive-cx/',
+  },
+  {
+    category: 'News',
+    date: 'Mar 20, 2025',
+    title: 'MerQ and CloudingAI Announce Strategic Merger to Lead Agentic AI in MENA',
+    excerpt:
+      'Two of the region\'s most forward-thinking technology firms join forces to create a unified powerhouse for Agentforce implementation and AI transformation across the Middle East.',
+    image: 'https://clouding.ai/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-19-at-1.17.09-PM-1-768x346.jpeg',
+    href: 'https://clouding.ai/merq-cloudingai-strategic-merger/',
   },
 ]
 
@@ -167,8 +198,99 @@ export default function Home() {
           </div>
         </SectionWrapper>
 
-        {/* Team(#071628) → CTABanner(#020e20)  "\"  */}
+        {/* Team(#071628) → Insights(#020e20)  "\"  */}
         <WaveDivider topColor={LIGHT} bottomColor={DARK} flip={true} />
+
+        {/* ── Insights ── */}
+        <SectionWrapper
+          id="blog"
+          dark
+          eyebrow="Latest Insights"
+          title="Thinking Out Loud"
+          subtitle="Perspectives on AI, Salesforce, and the future of customer experience from the Clouding AI team."
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {POSTS.map((post, i) => (
+              <a
+                key={post.title}
+                href={post.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col rounded-2xl overflow-hidden glass-card transition-all duration-300 hover:-translate-y-2"
+                style={{
+                  animationDelay: `${i * 0.12}s`,
+                  textDecoration: 'none',
+                }}
+              >
+                {/* Thumbnail */}
+                <div className="relative w-full h-44 overflow-hidden shrink-0">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Overlay so card bg bleeds into image bottom */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(to bottom, transparent, rgba(4,14,32,0.7))',
+                    }}
+                  />
+                </div>
+
+                {/* Body */}
+                <div className="flex flex-col flex-1 p-5">
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                      style={{
+                        background: 'rgba(0,200,224,0.1)',
+                        border:     '1px solid rgba(0,200,224,0.2)',
+                        color:      '#00c8e0',
+                      }}
+                    >
+                      {post.category}
+                    </span>
+                    <span className="text-[11px] text-white/35">{post.date}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-sm font-semibold text-white leading-snug mb-2 group-hover:text-[#00c8e0] transition-colors duration-300 flex-1">
+                    {post.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-xs text-white/45 leading-relaxed mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Read more */}
+                  <span
+                    className="text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-colors duration-300"
+                    style={{ color: 'rgba(0,200,224,0.7)' }}
+                  >
+                    Read More
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                      <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+
+                {/* Bottom cyan glow on hover */}
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                  style={{ boxShadow: 'inset 0 0 0 1px rgba(0,200,224,0.25)' }}
+                />
+              </a>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Insights(#020e20) → CTABanner(#020e20): same bg, wave for texture */}
+        <WaveDivider topColor={DARK} bottomColor={DARK} flip={false} />
 
         {/* ── CTA ── */}
         <CTABanner />
