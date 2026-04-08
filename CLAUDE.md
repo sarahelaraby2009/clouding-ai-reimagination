@@ -1,115 +1,120 @@
-# CLAUDE.md — AI-Assisted Development Workflow
+# clouding.ai — Reimagined
 
-This file documents how Claude Code was used to build this project from scratch.
-It serves as a reference for the workflow, tooling decisions, and prompts used at each phase.
+> A full-stack Next.js 14 reimagination of [clouding.ai](https://clouding.ai), built end-to-end using Claude Code with Plan Mode, custom skills, and MCP integrations.
 
 ---
 
 ## Project Overview
 
-**What it is:** A reimagination of the [clouding.ai](https://clouding.ai) website — a Salesforce/Agentforce-focused company operating in the MENA region. The goal is to rebuild their web presence using modern frontend technologies, demonstrating what the site could look like with current tooling and design sensibilities.
+**clouding.ai** is a Salesforce and Agentforce consultancy headquartered in Dubai, with offices across the MENA region. Their existing site is built on WordPress + Elementor — functional, but technically dated and visually conservative for a company positioning itself at the frontier of AI transformation.
 
-**Why it was built with Claude Code:** This is a career demonstration assignment. The entire project — from scaffolding to analysis to component building to deployment — is driven through Claude Code to showcase AI-assisted frontend development as a professional workflow, not just a productivity shortcut.
+This project is a complete reimagination of that site: same brand identity and content, rebuilt on a modern stack with a premium dark aesthetic, Three.js hero, Framer Motion animations, and a component architecture designed for long-term maintainability.
+
+**Why Claude Code?** The goal was to demonstrate AI-assisted software engineering as a professional workflow — not vibe coding, but structured, plan-first, tool-integrated development. Every implementation step was preceded by a written plan, reviewed before execution, and logged to Notion as research artefacts.
 
 ---
 
 ## Tech Stack
 
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS with extended theme + CSS custom properties |
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 14 (App Router, TypeScript) |
+| Styling | Tailwind CSS + custom CSS variables |
 | Animation | Framer Motion |
-| 3D | React Three Fiber v8 + Drei v9 + Three.js |
-| Data / CMS | Notion (via MCP) |
-| Linting | ESLint (next/core-web-vitals) |
+| 3D | React Three Fiber + Drei |
+| Fonts | Geist Sans via `next/font/local` |
+| Content | Static data in `src/data/` |
+| AI Workflow | Claude Code (Sonnet 4.6) |
+| Project Docs | Notion via MCP |
+| Version Control | GitHub via API |
 
 ---
 
 ## Workflow
 
-Claude Code was used across four phases. Each phase used a combination of Plan Mode, custom slash commands (skills), and MCP server integrations.
+The project followed a strict Plan → Approve → Execute loop throughout. Claude Code's Plan Mode was activated for all non-trivial tasks, requiring explicit approval before any file was written or command run.
 
-### Phase 1 — Project Setup
+### Phase 1 — Research & Setup
 
-**What happened:**
-1. Initialized a Next.js 14 project with TypeScript and Tailwind via `create-next-app`
-2. Installed all dependencies: `framer-motion`, `@react-three/fiber`, `@react-three/drei`, `three`, `@notionhq/client`
-3. Created the folder structure: `src/components/ui/`, `src/components/three/`, `src/lib/`, `src/types/`
-4. Configured `.claude/settings.json` with Notion and GitHub MCP servers
-5. Authored four custom slash commands in `.claude/commands/`
-6. Updated `tailwind.config.ts` with brand color palette, semantic tokens, font families, and keyframe animations
-7. Updated `globals.css` with CSS variable definitions for light/dark mode
-8. Created `src/lib/notion.ts` (Notion API client) and `src/types/index.ts` (shared types)
-9. Created `.env.local` stubs for all required environment variables
+1. Ran `/analyze-website https://clouding.ai` — fetched and analysed the live site using the `WebFetch` tool, producing a structured report covering purpose, tech stack, design patterns, key sections, and brand voice.
+2. Used the Notion MCP (`notion-update-page`) to log the full analysis to the "Clouding AI Reimagination" Notion page under two structured sections: **Analysis** and **Design Strategy**.
+3. Reviewed the design strategy output to define component priorities, color system, and motion approach before writing any code.
 
-**Tools used:** Plan Mode, Write, Edit, Bash
+### Phase 2 — Component Building
 
-### Phase 2 — Website Analysis & Notion Logging
+Built six core components in sequence, each preceded by a Plan Mode review:
 
-**What happens:**
-1. Run `/analyze-website https://clouding.ai` — Claude fetches the live site and produces a structured design/tech audit
-2. Review the output: purpose, tech stack signals, design patterns, component patterns, accessibility, performance, and inspiration takeaways
-3. Run `/log-to-notion` — Claude creates a new page in the Notion database with the analysis findings
+1. `NavBar` — fixed header, scroll blur, mobile hamburger
+2. `HeroSection` — Three.js particle sphere (Fibonacci lattice), split layout, Framer Motion stagger
+3. `ServiceCard` — glassmorphism, cyan gradient border on hover
+4. `SectionWrapper` — `whileInView` Framer Motion reveal, eyebrow label, cyan underline accent
+5. `TeamCard` — gradient initials avatar, tenure badge
+6. `CTABanner` — radial glow, email/phone CTAs
 
-**Tools used:** `/analyze-website` skill, `/log-to-notion` skill, Notion MCP
+All components were wired in `src/app/page.tsx` with real Clouding AI content.
 
-### Phase 3 — Component Building
+### Phase 3 — Visual Polish
 
-**What happens:**
-1. Run `/create-component` for each section of the redesigned site
-2. Claude asks for: component name, description, and whether it needs Framer Motion, React Three Fiber, or both
-3. Claude writes the complete `.tsx` file to the correct path under `src/components/`
-4. Iterate via chat — refine props, adjust animations, update styles
+- Replaced solid brand colors with the real Clouding AI palette (`#045089`, `#f96d64`, `#020e20`)
+- Added `#00c8e0` cyan as the primary interactive accent
+- Introduced multi-layer SVG `WaveDivider` between every section
+- Applied glassmorphism (`.glass-card`) via backdrop-filter
+- Added SVG fractal noise texture overlay at 2.8% opacity for depth
+- Particle sphere rebuilt with Fibonacci lattice distribution for even coverage
 
-**Tools used:** `/create-component` skill, Edit, Write
+### Phase 4 — Pages & Routes
 
-### Phase 4 — GitHub Push
+- `/academy` — full Clouding AI Academy reimagination with `AcademyHero` (pulsing rings), mission, objectives, 4 training tracks, enrollment timeline, and success partners
+- `/blog/[slug]` — three static blog posts with full article content, related posts, and back navigation
+- `loading.tsx` files at root and `/academy` — shared `LoadingScreen` component with counter-rotating rings
 
-**What happens:**
-1. Run `/git-push` — Claude runs `git status` and `git diff --stat`, drafts a conventional commit message, asks for confirmation, then stages, commits, and pushes
-2. Claude never force-pushes to main without explicit confirmation and never skips git hooks
+### Phase 5 — Infrastructure
 
-**Tools used:** `/git-push` skill, Bash, GitHub MCP
+- NavBar anchor links fixed to use `/#section` pattern (works from any route)
+- `Footer` extracted as a shared component across all pages
+- `next.config.mjs` updated with `remotePatterns` for clouding.ai image optimisation
+- All TypeScript errors resolved (Framer Motion `Variants` typing, ESLint entity escaping)
+- `.claude/commands/` migrated to `.claude/skills/` folder structure
 
 ---
 
-## Skills (Slash Commands)
+## Skills
 
-Custom commands live in `.claude/commands/` and are invoked with `/command-name` in the Claude Code prompt.
+All skills live in `.claude/skills/<name>/SKILL.md` and are invokable as `/skill-name`.
 
 ### `/analyze-website`
-Fetches a URL with `WebFetch` and produces a structured audit covering purpose, tech stack signals, design patterns, component patterns, accessibility, performance, and actionable inspiration takeaways.
+
+Fetches a URL via `WebFetch` and produces a structured analysis report covering purpose, tech stack, design patterns, component patterns, accessibility, performance signals, and inspiration takeaways.
 
 ```
 /analyze-website https://clouding.ai
 ```
 
 ### `/create-component`
-Scaffolds a new React component. Asks for name, description, and animation/3D requirements, then writes a complete TypeScript file with a `Props` interface, Tailwind classes, and optional Framer Motion variants or R3F canvas setup.
+
+Scaffolds a new TypeScript React component at the correct `src/components/` path with proper typing, Tailwind styling, optional Framer Motion animation, and optional React Three Fiber 3D content.
 
 ```
 /create-component
-> Name: HeroSection
-> Description: Full-viewport hero with animated headline and 3D background
-> Needs: Both (Framer Motion + R3F)
+> Name: PricingCard
+> Description: Glassmorphism pricing tier card with hover glow
+> Needs: Framer Motion
 ```
 
-Output path: `src/components/<Name>.tsx` (or `ui/` / `three/` subfolder as appropriate)
-
 ### `/log-to-notion`
-Creates a new page in the project Notion database via the Notion MCP. Accepts a title, body content, and optional tags. Reports the created page URL on success.
+
+Creates a new page in the project Notion database via the Notion MCP, with a title, body content, optional tags, and a "Logged from Claude Code" attribution note.
 
 ```
 /log-to-notion
-> Title: clouding.ai Analysis — April 2026
-> Body: <paste analysis output>
-> Tags: analysis, design, phase-2
+> Title: Sprint Retrospective — April 2025
+> Body: ...
+> Tags: retrospective, sprint
 ```
 
 ### `/git-push`
-Runs `git status` + `git diff --stat`, drafts a conventional commit message (`feat/fix/chore/refactor/style/docs/test`), asks for confirmation, then commits and pushes to the current branch. Never uses `--no-verify`.
+
+Runs `git status` and `git diff --stat`, proposes a conventional commit message, asks for confirmation, then stages, commits, and pushes to origin. Never uses `--no-verify` or force-pushes without explicit instruction.
 
 ```
 /git-push
@@ -119,84 +124,85 @@ Runs `git status` + `git diff --stat`, drafts a conventional commit message (`fe
 
 ## MCP Integrations
 
-MCP (Model Context Protocol) servers are configured in `.claude/settings.json` and give Claude Code direct tool access to external services — no copy-pasting, no manual API calls.
-
 ### Notion MCP (`@notionhq/notion-mcp-server`)
 
-**Used for:**
-- Creating analysis log entries during Phase 2
-- Logging design decisions, component notes, and status updates throughout the build
-- Maintaining a living project log alongside the codebase
+Used throughout the project as a persistent research log and decision record.
 
-**Target database:** `NOTION_DATABASE_ID` (set in `.env.local`)
-**Integration name:** "clouding ai reimagination"
-**Connected page:** "Clouding AI Reimagination" (Notion page ID: `2f4b7d521ec38064937dc89ddf0e1ecd`)
+**What was logged:**
 
-### GitHub MCP (`@modelcontextprotocol/server-github`)
+- **Analysis** section — full website analysis of clouding.ai: purpose, tech stack (WordPress + Elementor + Bootstrap), color palette, page sections, brand voice, accessibility gaps
+- **Design Strategy** section — derived recommendations: color system mapped to Tailwind CSS vars, component priorities in order, responsive strategy, Three.js hero rationale, differentiation goals vs. the original site
 
-**Used for:**
-- Pushing commits via the `/git-push` skill
-- Reading repository state (branch, status) without leaving the Claude Code session
+**Target page:** `2f4b7d521ec38064937dc89ddf0e1ecd` ("Clouding AI Reimagination")
 
-**Auth:** `GITHUB_PERSONAL_ACCESS_TOKEN` (set in `.env.local`)
+```ts
+// Configured in .claude/settings.json
+{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": { "NOTION_API_KEY": "..." }
+    }
+  }
+}
+```
+
+### GitHub (API via Node.js)
+
+The `clouding-ai-reimagination` repository did not exist at project start. It was created programmatically via the GitHub REST API using a Node.js one-liner (no `gh` CLI available in the environment), then the remote was added and the initial push made.
+
+Subsequent pushes used standard `git push origin master` after each meaningful feature commit.
 
 ---
 
-## Prompts Used
+## Key Prompts
 
-### Phase 1 — Project Setup
-
-```
-Scaffold a Next.js 14 TypeScript project called "clouding.ai-reimagination".
-Install: framer-motion, @react-three/fiber, @react-three/drei, three, @notionhq/client.
-Create src/components/ui/, src/components/three/, src/lib/, src/types/.
-Set up .claude/settings.json with Notion and GitHub MCP servers.
-```
+### Phase 1 — Analysis
 
 ```
-Update tailwind.config.ts with a brand palette (indigo/violet), semantic color tokens
-(background, foreground, surface, surface-elevated, muted, accent), Geist font families,
-and fade-in / slide-up keyframe animations.
+Run /analyze-website on https://clouding.ai
+Then log the full analysis to Notion page "Clouding AI Reimagination"
+under sections: Analysis, Design Strategy.
+Show me what you'll write before executing.
 ```
 
-```
-Update globals.css with CSS variable definitions for the brand palette and semantic tokens,
-with dark mode via prefers-color-scheme. Add a .canvas-container utility for Three.js canvases.
-```
-
-### Phase 2 — Analysis & Notion Logging
+### Phase 2 — Component Build
 
 ```
-/analyze-website https://clouding.ai
+Now proceed with building the project based on the design strategy logged to Notion.
+Use /create-component for each section in this order:
+1. NavBar
+2. HeroSection (with Three.js sphere)
+3. ServiceCard
+4. SectionWrapper
+5. TeamCard
+6. CTABanner
+
+After building all components, wire them in src/app/page.tsx
+Then run /git-push to push to GitHub repo: clouding-ai-reimagination
 ```
 
-```
-/log-to-notion
-Title: clouding.ai Site Analysis
-Body: <analysis output>
-Tags: analysis, phase-2
-```
-
-### Phase 3 — Component Building
+### Phase 3 — Visual Overhaul
 
 ```
-/create-component
-Name: HeroSection
-Description: Full-viewport hero with animated tagline, CTA buttons, and an abstract 3D particle cloud
-Needs: Both
+The current design needs significant visual improvements.
+1. HERO SECTION: Replace sphere with AI-themed particle sphere,
+   wireframe mesh, glowing cyan particles, right-side layout
+2. COLORS: Deep radial gradient background, glassmorphism cards,
+   gradient "Impact" text
+3. ANIMATIONS: Staggered Framer Motion entrance, whileInView sections
+4. OVERALL: More premium dark theme, cyan accent, grid line overlay
 ```
 
-```
-/create-component
-Name: NavBar
-Description: Sticky top navigation with logo, links, and a CTA button. Collapses to hamburger on mobile.
-Needs: Framer Motion only
-```
-
-### Phase 4 — GitHub Push
+### Phase 4 — Academy Page
 
 ```
-/git-push
+Create a new page for the Clouding AI Academy section.
+Reference URL: https://clouding.ai/clouding-ai-academy/
+Fetch and analyze this page first, then build the reimagination.
+Route: src/app/academy/page.tsx
+Same design system: navy #050d1a, cyan #00c8e0, Framer Motion, glassmorphism
 ```
 
 ---
@@ -204,57 +210,128 @@ Needs: Framer Motion only
 ## Design Decisions
 
 ### Next.js 14 over WordPress
-The original clouding.ai site appears to be WordPress-based. Next.js 14 with the App Router gives full control over rendering strategy (SSG/SSR/ISR per-route), removes the CMS overhead, and enables native TypeScript, Tailwind, and R3F integration without plugin wrangling.
+
+The original site is built on WordPress + Elementor. This stack carries significant overhead: ~3–5 MB of JS/CSS per page, render-blocking fonts via Google Fonts CDN, no native image optimisation, and Elementor's mechanical entrance animations.
+
+Next.js 14 with the App Router gives static site generation for all pages (no server required), `next/image` with automatic format conversion and lazy loading, `next/font` for zero-CLS font delivery, and a component architecture that scales cleanly as the site grows.
 
 ### Framer Motion for animations
-Framer Motion's `variants` API makes it straightforward to coordinate staggered entrance animations across component trees — exactly what a marketing site needs for section reveals and hero transitions. It compiles to CSS where possible and falls back to JS-driven animation gracefully.
+
+Elementor's scroll animations are CSS-class-injection-based — they work, but they feel mechanical and are not interruptible. Framer Motion's `whileInView` with `viewport={{ once: true }}` gives smooth, physics-respecting animations that respect `prefers-reduced-motion` and integrate directly with React's render lifecycle. The `staggerChildren` pattern used across `SectionWrapper` and the hero text gives the page the layered, sequential reveal feel common in premium SaaS sites.
 
 ### React Three Fiber for the hero
-A static image hero would not differentiate this redesign from the original. R3F lets the hero section use a live 3D scene (particle cloud, geometric abstract) while staying inside the React component model — no imperative Three.js lifecycle management, no separate canvas coordinator.
 
-### Color and typography
-- **Brand palette:** Indigo/violet (`#6366f1` primary) — conveys technology and trust without defaulting to the overused SaaS blue
-- **Semantic tokens:** All colors are defined as CSS variables and mapped into Tailwind, so dark mode is a single `@media` block with no class toggling required
-- **Typography:** Geist Sans (body) + Geist Mono (code/data) — clean, modern, designed specifically for developer-facing products; loaded locally via `next/font` for zero layout shift
+No competitor in the Salesforce consultancy space in MENA has a Three.js hero. The particle sphere — 2,400 points distributed via Fibonacci lattice, layered with a counter-rotating wireframe mesh and a pulsing inner glow core — communicates AI complexity and technical depth without requiring any explanation. It is loaded as a dynamic import with `ssr: false` to keep it out of the static HTML, and the `LoadingScreen` component displays while the Three.js bundle hydrates.
+
+### Color system
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--brand-600` | `#045089` | Primary blue — preserved from original |
+| `--accent` | `#f96d64` | Coral red — CTAs, preserved from original |
+| `--background` | `#020e20` | Deep navy — dark sections |
+| `--surface` | `#071628` | Lighter navy — alternating sections |
+| `--cyan` | `#00c8e0` | Interactive accent — new, not in original |
+
+The `--cyan` accent was added to create a distinctly premium, AI-forward feeling not present in the original. It appears on hover states, eyebrow labels, divider accents, particle lighting, and the gradient logo mark.
+
+### Typography
+
+Geist Sans (Vercel's variable font, already in the Next.js scaffold) handles body and UI text. It is loaded via `next/font/local` — zero external requests, zero layout shift. No display font was added because Geist Bold at large weights is sufficiently distinctive for the hero.
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with font variables
+│   ├── globals.css         # CSS vars, noise texture, utilities
+│   ├── loading.tsx         # Root loading UI
+│   ├── page.tsx            # Homepage
+│   ├── academy/
+│   │   ├── loading.tsx
+│   │   └── page.tsx        # Academy page
+│   └── blog/
+│       └── [slug]/
+│           └── page.tsx    # Dynamic blog post route (SSG)
+├── components/
+│   ├── three/
+│   │   └── HeroSection.tsx # Three.js particle sphere hero
+│   └── ui/
+│       ├── NavBar.tsx
+│       ├── HeroSection.tsx
+│       ├── ServiceCard.tsx
+│       ├── SectionWrapper.tsx
+│       ├── SectionDivider.tsx
+│       ├── WaveDivider.tsx
+│       ├── TeamCard.tsx
+│       ├── CTABanner.tsx
+│       ├── AcademyHero.tsx
+│       ├── Footer.tsx
+│       └── LoadingScreen.tsx
+├── data/
+│   └── blog.ts             # Blog post data + helper functions
+└── types/
+    └── index.ts            # Shared TypeScript interfaces
+```
 
 ---
 
 ## How to Run
 
 ### Prerequisites
+
 - Node.js 18+
-- A Notion integration with read/insert/update access to your target database
-- A GitHub personal access token (if using the `/git-push` MCP path)
+- A Notion integration with read/write access to the project page
 
-### Setup
-
-```bash
-npm install
-```
+### Environment variables
 
 Create `.env.local` at the project root:
 
 ```env
-NOTION_API_KEY=secret_...
-NOTION_DATABASE_ID=837e87d90cf045798b3b56f42acd171b
+NOTION_API_KEY=ntn_...
+NOTION_DATABASE_ID=2f4b7d521ec38064937dc89ddf0e1ecd
 GITHUB_PERSONAL_ACCESS_TOKEN=ghp_...
 ```
 
-### Run
+### Commands
 
 ```bash
-npm run dev     # Development server → http://localhost:3000
-npm run build   # Production build
-npm run lint    # ESLint
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+# → http://localhost:3000
+
+# Production build (verifies all types and routes)
+npm run build
+
+# Start production server
+npm start
 ```
 
-### Using Claude Code skills
+### Routes
 
-Open the project in Claude Code, then use:
+| Route | Page |
+|-------|------|
+| `/` | Homepage — Hero, Services, About, Team, Insights, CTA |
+| `/academy` | Clouding AI Academy |
+| `/blog/picture-superiority-effect` | Blog post |
+| `/blog/deterministic-ux-to-cognitive-cx` | Blog post |
+| `/blog/merq-cloudingai-merger` | Blog post |
 
-```
-/analyze-website <url>
-/create-component
-/log-to-notion
-/git-push
-```
+---
+
+## Notion Integration (CLAUDE.md context)
+
+- **Integration name:** clouding ai reimagination
+- **Target page ID:** `2f4b7d521ec38064937dc89ddf0e1ecd`
+- **Database ID:** `837e87d90cf045798b3b56f42acd171b`
+- **Permissions:** read, insert, update
+
+---
+
+*Built with [Claude Code](https://claude.ai/code) — Anthropic's AI-assisted engineering CLI.*
