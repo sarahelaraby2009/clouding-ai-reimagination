@@ -9,6 +9,7 @@ import CTABanner from '@/components/ui/CTABanner'
 import Footer from '@/components/ui/Footer'
 import LoadingScreen from '@/components/ui/LoadingScreen'
 import WaveDivider from '@/components/ui/WaveDivider'
+import ClientLogosStrip from '@/components/ui/ClientLogosStrip'
 
 const DARK = '#020e20'
 const LIGHT = '#071628'
@@ -124,6 +125,9 @@ export default function Home() {
       <main id="main-content">
         {/* ── Hero ── */}
         <HeroSection />
+
+        {/* ── Client logos strip ── */}
+        <ClientLogosStrip />
 
         {/* Hero(#020e20) → Services(#071628)  "/"  */}
         <WaveDivider topColor={DARK} bottomColor={LIGHT} flip={false} />
