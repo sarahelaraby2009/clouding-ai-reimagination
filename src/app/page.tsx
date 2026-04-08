@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Link from 'next/link'
 import NavBar from '@/components/ui/NavBar'
 import ServiceCard from '@/components/ui/ServiceCard'
 import SectionWrapper from '@/components/ui/SectionWrapper'
@@ -77,22 +78,22 @@ const TEAM = [
 
 const POSTS = [
   {
-    category: 'AI & CX',
+    category: 'AI & UX',
     date: 'Sep 26, 2025',
     title: 'Picture Superiority Effect: Why Visual-First AI Agents Convert Better',
     excerpt:
       'Research shows humans process images 60,000× faster than text. Discover how applying the Picture Superiority Effect in Agentforce builds AI agents that engage, persuade, and convert.',
     image: 'https://clouding.ai/wp-content/uploads/2025/09/PicSup-768x231.png',
-    href: 'https://clouding.ai/picture-superiority-effect-why-visual-first-ai-agents-convert-better/',
+    href: '/blog/picture-superiority-effect',
   },
   {
-    category: 'Strategy',
+    category: 'Design Strategy',
     date: 'Sep 9, 2025',
     title: 'From Deterministic UX to Cognitive CX',
     excerpt:
       'The shift from rule-based interfaces to AI-driven cognitive experiences is redefining how enterprises think about customer engagement — and what it means to design for intent.',
     image: 'https://clouding.ai/wp-content/uploads/2025/09/UX-to-Cognitive-CX-768x347.png',
-    href: 'https://clouding.ai/from-deterministic-ux-to-cognitive-cx/',
+    href: '/blog/deterministic-ux-to-cognitive-cx',
   },
   {
     category: 'News',
@@ -101,7 +102,7 @@ const POSTS = [
     excerpt:
       'Two of the region\'s most forward-thinking technology firms join forces to create a unified powerhouse for Agentforce implementation and AI transformation across the Middle East.',
     image: 'https://clouding.ai/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-19-at-1.17.09-PM-1-768x346.jpeg',
-    href: 'https://clouding.ai/merq-cloudingai-strategic-merger/',
+    href: '/blog/merq-cloudingai-merger',
   },
 ]
 
@@ -211,11 +212,9 @@ export default function Home() {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {POSTS.map((post, i) => (
-              <a
+              <Link
                 key={post.title}
                 href={post.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group flex flex-col rounded-2xl overflow-hidden glass-card transition-all duration-300 hover:-translate-y-2"
                 style={{
                   animationDelay: `${i * 0.12}s`,
@@ -284,7 +283,7 @@ export default function Home() {
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
                   style={{ boxShadow: 'inset 0 0 0 1px rgba(0,200,224,0.25)' }}
                 />
-              </a>
+              </Link>
             ))}
           </div>
         </SectionWrapper>
