@@ -6,7 +6,7 @@ import TeamCard from '@/components/ui/TeamCard'
 import CTABanner from '@/components/ui/CTABanner'
 import Footer from '@/components/ui/Footer'
 import LoadingScreen from '@/components/ui/LoadingScreen'
-import SectionDivider from '@/components/ui/SectionDivider'
+import WaveDivider from '@/components/ui/WaveDivider'
 
 const DARK = '#020e20'
 const LIGHT = '#071628'
@@ -94,7 +94,7 @@ export default function Home() {
         <HeroSection />
 
         {/* Hero(#020e20) → Services(#071628)  "/"  */}
-        <SectionDivider from={DARK} to={LIGHT} flip={false} />
+        <WaveDivider topColor={DARK} bottomColor={LIGHT} flip={false} />
 
         {/* ── Services ── */}
         <SectionWrapper
@@ -112,7 +112,7 @@ export default function Home() {
         </SectionWrapper>
 
         {/* Services(#071628) → About(#020e20)  "\"  */}
-        <SectionDivider from={LIGHT} to={DARK} flip={true} />
+        <WaveDivider topColor={LIGHT} bottomColor={DARK} flip={true} />
 
         {/* ── About ── */}
         <SectionWrapper
@@ -150,7 +150,7 @@ export default function Home() {
         </SectionWrapper>
 
         {/* About(#020e20) → Team(#071628)  "/"  */}
-        <SectionDivider from={DARK} to={LIGHT} flip={false} />
+        <WaveDivider topColor={DARK} bottomColor={LIGHT} flip={false} />
 
         {/* ── Team ── */}
         <SectionWrapper
@@ -168,7 +168,7 @@ export default function Home() {
         </SectionWrapper>
 
         {/* Team(#071628) → CTABanner(#020e20)  "\"  */}
-        <SectionDivider from={LIGHT} to={DARK} flip={true} />
+        <WaveDivider topColor={LIGHT} bottomColor={DARK} flip={true} />
 
         {/* ── CTA ── */}
         <CTABanner />

@@ -4,7 +4,7 @@ import Footer from '@/components/ui/Footer'
 import AcademyHero from '@/components/ui/AcademyHero'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import ServiceCard from '@/components/ui/ServiceCard'
-import SectionDivider from '@/components/ui/SectionDivider'
+import WaveDivider from '@/components/ui/WaveDivider'
 
 const DARK = '#020e20'
 const LIGHT = '#071628'
@@ -147,7 +147,7 @@ export default function AcademyPage() {
         </SectionWrapper>
 
         {/* Mission(#020e20) → Objectives(#071628)  "/"  */}
-        <SectionDivider from={DARK} to={LIGHT} flip={false} />
+        <WaveDivider topColor={DARK} bottomColor={LIGHT} flip={false} />
 
         {/* ── Objectives ── */}
         <SectionWrapper
@@ -174,7 +174,7 @@ export default function AcademyPage() {
         </SectionWrapper>
 
         {/* Objectives(#071628) → Tracks(#020e20)  "\"  */}
-        <SectionDivider from={LIGHT} to={DARK} flip={true} />
+        <WaveDivider topColor={LIGHT} bottomColor={DARK} flip={true} />
 
         {/* ── Training Tracks ── */}
         <SectionWrapper
@@ -192,7 +192,7 @@ export default function AcademyPage() {
         </SectionWrapper>
 
         {/* Tracks(#020e20) → Enroll(#071628)  "/"  */}
-        <SectionDivider from={DARK} to={LIGHT} flip={false} />
+        <WaveDivider topColor={DARK} bottomColor={LIGHT} flip={false} />
 
         {/* ── Enrollment Timeline ── */}
         <SectionWrapper
@@ -281,7 +281,7 @@ export default function AcademyPage() {
         </SectionWrapper>
 
         {/* Enroll(#071628) → Partners(#020e20)  "\"  */}
-        <SectionDivider from={LIGHT} to={DARK} flip={true} />
+        <WaveDivider topColor={LIGHT} bottomColor={DARK} flip={true} />
 
         {/* ── Success Partners ── */}
         <SectionWrapper
