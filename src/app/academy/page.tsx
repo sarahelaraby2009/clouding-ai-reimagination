@@ -4,6 +4,10 @@ import Footer from '@/components/ui/Footer'
 import AcademyHero from '@/components/ui/AcademyHero'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import ServiceCard from '@/components/ui/ServiceCard'
+import SectionDivider from '@/components/ui/SectionDivider'
+
+const DARK = '#020e20'
+const LIGHT = '#071628'
 
 export const metadata: Metadata = {
   title: 'Clouding AI Academy — Empowering the Next Generation',
@@ -112,6 +116,8 @@ export default function AcademyPage() {
         {/* ── Hero ── */}
         <AcademyHero />
 
+        {/* Hero(#020e20) → Mission(#020e20): same bg, no divider needed */}
+
         {/* ── Mission ── */}
         <SectionWrapper
           id="mission"
@@ -140,6 +146,9 @@ export default function AcademyPage() {
           </div>
         </SectionWrapper>
 
+        {/* Mission(#020e20) → Objectives(#071628)  "/"  */}
+        <SectionDivider from={DARK} to={LIGHT} flip={false} />
+
         {/* ── Objectives ── */}
         <SectionWrapper
           id="objectives"
@@ -164,6 +173,9 @@ export default function AcademyPage() {
           </div>
         </SectionWrapper>
 
+        {/* Objectives(#071628) → Tracks(#020e20)  "\"  */}
+        <SectionDivider from={LIGHT} to={DARK} flip={true} />
+
         {/* ── Training Tracks ── */}
         <SectionWrapper
           id="tracks"
@@ -178,6 +190,9 @@ export default function AcademyPage() {
             ))}
           </div>
         </SectionWrapper>
+
+        {/* Tracks(#020e20) → Enroll(#071628)  "/"  */}
+        <SectionDivider from={DARK} to={LIGHT} flip={false} />
 
         {/* ── Enrollment Timeline ── */}
         <SectionWrapper
@@ -264,6 +279,9 @@ export default function AcademyPage() {
             </div>
           </div>
         </SectionWrapper>
+
+        {/* Enroll(#071628) → Partners(#020e20)  "\"  */}
+        <SectionDivider from={LIGHT} to={DARK} flip={true} />
 
         {/* ── Success Partners ── */}
         <SectionWrapper
