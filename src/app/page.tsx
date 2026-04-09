@@ -60,8 +60,8 @@ const TEAM = [
     tenure: '20+ years of experience',
     description:
       'Two decades growing European enterprise presence, with deep expertise in digital transformation strategy and Salesforce ecosystem leadership.',
-    photoUrl: 'https://unavatar.io/linkedin/mohamed-shatla',
-    linkedinUrl: 'https://www.linkedin.com/in/mohamed-shatla',
+    photoUrl: 'https://clouding.ai/wp-content/uploads/2024/07/Screenshot-2024-07-14-at-3.28.45%E2%80%AFAM-394x394.png',
+    linkedinUrl: 'https://www.linkedin.com/in/mohamedshatla/',
   },
   {
     name: 'Tarek Negm',
@@ -69,8 +69,8 @@ const TEAM = [
     tenure: '22 years · $200M+ transformations',
     description:
       'Global enterprise architect who has led $200M+ digital transformation programmes across telecoms, finance, and media verticals.',
-    photoUrl: 'https://unavatar.io/linkedin/tarek-negm',
-    linkedinUrl: 'https://www.linkedin.com/in/tarek-negm',
+    photoUrl: 'https://clouding.ai/wp-content/uploads/2024/07/Screenshot-2024-07-14-at-3.29.03%E2%80%AFAM-394x394.png',
+    linkedinUrl: 'https://www.linkedin.com/in/tnegm/',
   },
   {
     name: 'Waleed Ghalwash',
@@ -78,8 +78,8 @@ const TEAM = [
     tenure: 'Serial entrepreneur',
     description:
       'Product visionary and serial founder specialising in AI-powered products, go-to-market strategy, and scaling tech startups in the MENA region.',
-    photoUrl: 'https://unavatar.io/linkedin/waleed-ghalwash',
-    linkedinUrl: 'https://www.linkedin.com/in/waleed-ghalwash',
+    photoUrl: 'https://clouding.ai/wp-content/uploads/2024/07/waleed-1-e1720985982755-394x394.jpg',
+    linkedinUrl: 'https://www.linkedin.com/in/waleedghalwash/',
   },
 ]
 
@@ -221,18 +221,18 @@ export default function Home() {
           subtitle="Perspectives on AI, Salesforce, and the future of customer experience from the Clouding AI team."
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {POSTS.map((post, i) => (
+            {POSTS.map((post) => (
               <Link
                 key={post.title}
                 href={post.href}
                 className="group flex flex-col rounded-2xl overflow-hidden glass-card transition-all duration-300 hover:-translate-y-2"
                 style={{
-                  animationDelay: `${i * 0.12}s`,
+                  animationDelay: `${POSTS.indexOf(post) * 0.12}s`,
                   textDecoration: 'none',
                 }}
               >
                 {/* Thumbnail */}
-                <div className="relative w-full h-44 overflow-hidden shrink-0">
+                <div className="relative w-full overflow-hidden shrink-0" style={{ height: '160px' }}>
                   <Image
                     src={post.image}
                     alt={post.title}
